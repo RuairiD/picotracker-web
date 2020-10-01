@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
-import { Divider, Typography, Layout, Menu, Dropdown, Spin } from 'antd';
+import { Button, Divider, Typography, Layout, Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 
 import apiRoot from '../../apiRoot';
@@ -61,22 +61,26 @@ const TimeframeMenu = ({ onClick, currentMenuKey }) => (
 );
 
 const TimeframeDropdown = ({ currentMenuKey, setCurrentMenuKey }) => (
-    <Dropdown
-        overlay={
-            <TimeframeMenu
-                onClick={
-                    event => {
-                        setCurrentMenuKey(event.key)
+    <div style={{ paddingTop: '1em', paddingBottom: '2em', textAlign: 'center' }}>
+        <Dropdown
+            overlay={
+                <TimeframeMenu
+                    onClick={
+                        event => {
+                            setCurrentMenuKey(event.key)
+                        }
                     }
-                }
-                currentMenuKey={currentMenuKey} />
-        }
-        trigger={['click']}
-    >
-        <Typography.Title level={5} style={{ padding: '2em', marginBottom: '1em' }}>
-            {TIMEFRAMES[currentMenuKey].title} <DownOutlined />
-        </Typography.Title>
-    </Dropdown>
+                    currentMenuKey={currentMenuKey} />
+            }
+            trigger={['click']}
+        >
+            <Button type="link">
+                <Typography.Title level={5}>
+                    {TIMEFRAMES[currentMenuKey].title} <DownOutlined />
+                </Typography.Title>
+            </Button>
+        </Dropdown>
+    </div>
 );
 
 // TODO: Nicked this from howsmytrack to fill out the page while content is loading. Should probably
