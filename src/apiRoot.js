@@ -1,1 +1,1 @@
-export default 'http://localhost:8000';
+export default 'https://picotracker-api.herokuapp.com/';
