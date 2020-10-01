@@ -3,9 +3,10 @@ import { List } from 'antd';
 
 import GameCard from '../../components/GameCard/GameCard';
 
-const GameList = ({ games }) => {
+const GameList = ({ games, loading }) => {
     return (
         <List
+            loading={loading}
             grid={{
                 gutter: 8,
                 xs: 1,
