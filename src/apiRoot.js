@@ -1,1 +1,1 @@
-export default 'https://picotracker-api.herokuapp.com/';
+export default 'https://picotracker-api.herokuapp.com';
