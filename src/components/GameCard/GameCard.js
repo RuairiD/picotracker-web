@@ -16,7 +16,7 @@ const GameDescription = ({
         <div>
             {dateFormat(
                 new Date(Date.parse(timeCreated)),
-                'mmmm dS yyyy',
+                'mmm dS yyyy',
             )}
         </div>
         <div>

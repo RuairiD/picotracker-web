@@ -5,6 +5,7 @@ import { DownOutlined } from '@ant-design/icons';
 
 import apiRoot from '../../apiRoot';
 import GameList from '../../components/GameList/GameList';
+import InfoModal from '../../components/InfoModal/InfoModal';
 
 const GAMES_QUERY = `query Games($timeframe: String) {
     games(timeframe: $timeframe) {
@@ -21,7 +22,7 @@ const GAMES_QUERY = `query Games($timeframe: String) {
     }
 }`;
 
-const PageHeader = () => (
+const PageHeader = ({ infoModalIsVisible, setInfoModalIsVisible }) => (
     <div style={{ textAlign: 'center', margin: '1em' }}>
         <Typography.Title>
             picotracker
@@ -29,6 +30,10 @@ const PageHeader = () => (
         <Typography.Title level={3}>
             the hottest pico-8 games
         </Typography.Title>
+        <Button type="link" onClick={() => setInfoModalIsVisible(true)}>
+            What is this?
+        </Button>
+        <InfoModal isVisible={infoModalIsVisible} onCancel={() => setInfoModalIsVisible(false)} />
     </div>
 );
 
@@ -93,6 +98,7 @@ const TRANSPARENT_TEXT = (
 
 const GamesPage = () => {
     const [currentMenuKey, setCurrentMenuKey] = useState("1");
+    const [infoModalIsVisible, setInfoModalIsVisible] = useState(false);
 
     const fetchGames = async () => {
         const response = await fetch(apiRoot + '/graphql/', {
@@ -118,9 +124,9 @@ const GamesPage = () => {
             <div className="page-container-inner">
                 <Layout.Content className="page-content">
                     <Layout className="content">
-                        <PageHeader />
+                        <PageHeader infoModalIsVisible={infoModalIsVisible} setInfoModalIsVisible={setInfoModalIsVisible} />
                         <Divider />
-                        <Layout.Content>
+                        <Layout.Content style={{ minHeight: '100vh' }}>
                             <TimeframeDropdown
                                 currentMenuKey={currentMenuKey}
                                 setCurrentMenuKey={setCurrentMenuKey}
