@@ -96,7 +96,7 @@ const SortMethodDropdown = ({ currentMenuKey, setCurrentMenuKey }) => (
 // figure this out. Maybe in 2 or 3 projects time.
 const TRANSPARENT_TEXT = (
     <Typography.Paragraph style={{ opacity: 0, height: 0, width: '100%' }}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sed hendrerit leo. Donec vitae risus et ante egestas sollicitudin at a mi. Duis fringilla a mi ut congue. Sed elit nunc, mollis sit amet interdum id, viverra vitae ligula. Proin eu risus vitae turpis fermentum maximus. Phasellus finibus enim nibh, non cursus lorem auctor interdum. Sed a ex id magna ultricies gravida. Proin sit amet sem at quam tristique tristique sit amet sed augue. Cras in bibendum risus, eu consequat turpis. In sed commodo augue. Donec nibh nulla, viverra quis mi tincidunt, pulvinar interdum neque. 
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sed hendrerit leo. Donec vitae risus et ante egestas sollicitudin at a mi. Duis fringilla a mi ut congue.
     </Typography.Paragraph>
 );
 
@@ -139,7 +139,6 @@ const GamesPage = () => {
                                 size: "large",
                                 spinning: isLoading,
                             }} />
-                            {TRANSPARENT_TEXT}
                         </Layout.Content>
 
                         <Layout.Footer style={{ textAlign: 'center' }}>
@@ -148,6 +147,7 @@ const GamesPage = () => {
                                 <Typography.Text strong>
                                     <a target="_blank" rel="noopener noreferrer" href="http://ruairidorrity.com">ruairi dorrity</a> &#47;&#47; <a target="_blank" rel="noopener noreferrer" href="https://www.lexaloffle.com/bbs/?uid=46702">ruairi dx</a>
                                 </Typography.Text>
+                                {TRANSPARENT_TEXT}
                             </Typography.Paragraph>
                         </Layout.Footer>
                     </Layout>
