@@ -7,8 +7,8 @@ import apiRoot from '../../apiRoot';
 import GameList from '../../components/GameList/GameList';
 import InfoModal from '../../components/InfoModal/InfoModal';
 
-const GAMES_QUERY = `query Games($timeframe: String) {
-    games(timeframe: $timeframe) {
+const GAMES_QUERY = `query Games($sortMethod: String) {
+    games(sortMethod: $sortMethod) {
         bbsId
         name
         stars
@@ -37,39 +37,43 @@ const PageHeader = ({ infoModalIsVisible, setInfoModalIsVisible }) => (
     </div>
 );
 
-const TIMEFRAMES = {
+const SORT_METHODS = {
     0: {
-        title: "Today",
-        value: "day",
+        title: "Hot",
+        value: "hot",
     },
     1: {
-        title: "This week",
-        value: "week",
+        title: "Top - Today",
+        value: "day",
     },
     2: {
-        title: "This month",
+        title: "Top - This week",
+        value: "week",
+    },
+    3: {
+        title: "Top - This month",
         value: "month",
     },
 }
 
-const TimeframeMenu = ({ onClick, currentMenuKey }) => (
+const SortMethodMenu = ({ onClick, currentMenuKey }) => (
     <Menu
         onClick={onClick}
         selectedKeys={[currentMenuKey]}
     >
-        {Object.keys(TIMEFRAMES).map(function(key) {
+        {Object.keys(SORT_METHODS).map(function(key) {
             return <Menu.Item key={key}>
-                {TIMEFRAMES[key].title}
+                {SORT_METHODS[key].title}
             </Menu.Item>
         })}
     </Menu>
 );
 
-const TimeframeDropdown = ({ currentMenuKey, setCurrentMenuKey }) => (
+const SortMethodDropdown = ({ currentMenuKey, setCurrentMenuKey }) => (
     <div style={{ paddingTop: '1em', paddingBottom: '2em', textAlign: 'center' }}>
         <Dropdown
             overlay={
-                <TimeframeMenu
+                <SortMethodMenu
                     onClick={
                         event => {
                             setCurrentMenuKey(event.key)
@@ -81,7 +85,7 @@ const TimeframeDropdown = ({ currentMenuKey, setCurrentMenuKey }) => (
         >
             <Button type="link">
                 <Typography.Title level={5}>
-                    {TIMEFRAMES[currentMenuKey].title} <DownOutlined />
+                    {SORT_METHODS[currentMenuKey].title} <DownOutlined />
                 </Typography.Title>
             </Button>
         </Dropdown>
@@ -97,7 +101,7 @@ const TRANSPARENT_TEXT = (
 );
 
 const GamesPage = () => {
-    const [currentMenuKey, setCurrentMenuKey] = useState("1");
+    const [currentMenuKey, setCurrentMenuKey] = useState("0");
     const [infoModalIsVisible, setInfoModalIsVisible] = useState(false);
 
     const fetchGames = async () => {
@@ -109,7 +113,7 @@ const GamesPage = () => {
             },
             body: JSON.stringify({
                 query: GAMES_QUERY,
-                variables: { timeframe: TIMEFRAMES[currentMenuKey].value}
+                variables: { sortMethod: SORT_METHODS[currentMenuKey].value}
             }),
             credentials: 'include',
         });
@@ -127,7 +131,7 @@ const GamesPage = () => {
                         <PageHeader infoModalIsVisible={infoModalIsVisible} setInfoModalIsVisible={setInfoModalIsVisible} />
                         <Divider />
                         <Layout.Content style={{ minHeight: '100vh' }}>
-                            <TimeframeDropdown
+                            <SortMethodDropdown
                                 currentMenuKey={currentMenuKey}
                                 setCurrentMenuKey={setCurrentMenuKey}
                             />
