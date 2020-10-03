@@ -4,6 +4,9 @@ import { List } from 'antd';
 import GameCard from '../../components/GameCard/GameCard';
 
 const GameList = ({ games, loading }) => {
+    if (!games && !loading.spinning) {
+        return null;
+    }
     return (
         <List
             loading={loading}

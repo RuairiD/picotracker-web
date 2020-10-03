@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import HttpsRedirect from 'react-https-redirect';
 import { useQuery } from 'react-query';
 import { Button, Divider, Typography, Layout, Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
@@ -24,12 +25,14 @@ const GAMES_QUERY = `query Games($sortMethod: String) {
 
 const PageHeader = ({ infoModalIsVisible, setInfoModalIsVisible }) => (
     <div style={{ textAlign: 'center', margin: '1em' }}>
-        <Typography.Title>
-            picotracker
-        </Typography.Title>
-        <Typography.Title level={3}>
-            the hottest pico-8 games
-        </Typography.Title>
+        <div style={{ fontFamily: 'CaveStoryRegular' }}>
+            <Typography.Title style={{ fontSize: '64px', margin: 0 }}>
+                picotracker
+            </Typography.Title>
+            <Typography.Title level={3} style={{ margin: 0 }}>
+                the hottest pico-8 games
+            </Typography.Title>
+        </div>
         <Button type="link" onClick={() => setInfoModalIsVisible(true)}>
             What is this?
         </Button>
@@ -124,36 +127,38 @@ const GamesPage = () => {
     const { isLoading, data: games } = useQuery([GAMES_QUERY, currentMenuKey], fetchGames);
 
     return (
-        <Layout className="page-container">
-            <div className="page-container-inner">
-                <Layout.Content className="page-content">
-                    <Layout className="content">
-                        <PageHeader infoModalIsVisible={infoModalIsVisible} setInfoModalIsVisible={setInfoModalIsVisible} />
-                        <Divider />
-                        <Layout.Content style={{ minHeight: '100vh' }}>
-                            <SortMethodDropdown
-                                currentMenuKey={currentMenuKey}
-                                setCurrentMenuKey={setCurrentMenuKey}
-                            />
-                            <GameList games={games} loading={{
-                                size: "large",
-                                spinning: isLoading,
-                            }} />
-                        </Layout.Content>
-
-                        <Layout.Footer style={{ textAlign: 'center' }}>
+        <HttpsRedirect>
+            <Layout className="page-container">
+                <div className="page-container-inner">
+                    <Layout.Content className="page-content">
+                        <Layout className="content">
+                            <PageHeader infoModalIsVisible={infoModalIsVisible} setInfoModalIsVisible={setInfoModalIsVisible} />
                             <Divider />
-                            <Typography.Paragraph>
-                                <Typography.Text strong>
-                                    <a target="_blank" rel="noopener noreferrer" href="http://ruairidorrity.com">ruairi dorrity</a> &#47;&#47; <a target="_blank" rel="noopener noreferrer" href="https://www.lexaloffle.com/bbs/?uid=46702">ruairi dx</a>
-                                </Typography.Text>
-                                {TRANSPARENT_TEXT}
-                            </Typography.Paragraph>
-                        </Layout.Footer>
-                    </Layout>
-                </Layout.Content>
-            </div>
-        </Layout>
+                            <Layout.Content style={{ minHeight: '100vh' }}>
+                                <SortMethodDropdown
+                                    currentMenuKey={currentMenuKey}
+                                    setCurrentMenuKey={setCurrentMenuKey}
+                                />
+                                <GameList games={games} loading={{
+                                    size: "large",
+                                    spinning: isLoading,
+                                }} />
+                            </Layout.Content>
+
+                            <Layout.Footer style={{ textAlign: 'center' }}>
+                                <Divider />
+                                <Typography.Paragraph>
+                                    <Typography.Text strong>
+                                        <a target="_blank" rel="noopener noreferrer" href="http://ruairidorrity.com">ruairi dorrity</a> &#47;&#47; <a target="_blank" rel="noopener noreferrer" href="https://www.lexaloffle.com/bbs/?uid=46702">ruairi dx</a>
+                                    </Typography.Text>
+                                    {TRANSPARENT_TEXT}
+                                </Typography.Paragraph>
+                            </Layout.Footer>
+                        </Layout>
+                    </Layout.Content>
+                </div>
+            </Layout>
+        </HttpsRedirect>
     )
 };
 

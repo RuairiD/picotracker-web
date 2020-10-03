@@ -10,6 +10,7 @@
     "dateformat": "^3.0.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-https-redirect": "^1.1.0",
     "react-query": "^2.23.0",
     "react-scripts": "3.4.3"
   },
