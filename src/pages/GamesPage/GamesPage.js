@@ -26,7 +26,7 @@ const GAMES_QUERY = `query Games($sortMethod: String) {
 const PageHeader = ({ infoModalIsVisible, setInfoModalIsVisible }) => (
     <div style={{ textAlign: 'center', margin: '1em' }}>
         <div style={{ fontFamily: 'CaveStoryRegular' }}>
-            <Typography.Title style={{ fontSize: '64px', margin: 0 }}>
+            <Typography.Title style={{ fontSize: '64px', margin: 0, letterSpacing: '4px' }}>
                 picotracker
             </Typography.Title>
             <Typography.Title level={3} style={{ margin: 0 }}>

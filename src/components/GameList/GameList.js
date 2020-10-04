@@ -1,11 +1,11 @@
 import React from 'react';
-import { List } from 'antd';
+import { List, Typography } from 'antd';
 
 import GameCard from '../../components/GameCard/GameCard';
 
 const GameList = ({ games, loading }) => {
-    if (!games && !loading.spinning) {
-        return null;
+    if ((!games || games.length === 0) && !loading.spinning) {
+        return <Typography.Title level={5} style={{ textAlign: 'center' }}>Nothing here!</Typography.Title>;
     }
     return (
         <List
