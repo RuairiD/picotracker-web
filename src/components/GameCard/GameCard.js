@@ -1,6 +1,6 @@
 import React from 'react';
 import dateFormat from 'dateformat';
-import { Card } from 'antd';
+import { Card, Typography } from 'antd';
 import { StarOutlined, CommentOutlined } from '@ant-design/icons';
 
 const GameDescription = ({
@@ -8,6 +8,7 @@ const GameDescription = ({
     comments,
     timeCreated,
     developer,
+    tags,
 }) => (
     <div>
         <div>
@@ -17,7 +18,7 @@ const GameDescription = ({
             {dateFormat(
                 new Date(Date.parse(timeCreated)),
                 'mmm dS yyyy',
-            )}
+            )} {tags && tags.length > 0 && <Typography.Text type="secondary" style={{ paddingLeft: '0.5em' }}>#{tags[0]}</Typography.Text>}
         </div>
         <div>
             <a target="_blank" rel="noopener noreferrer" href={"https://www.lexaloffle.com/bbs/?uid=" + developer.bbsId}>By {developer.username}</a>
@@ -33,6 +34,7 @@ const GameCard = ({
     timeCreated,
     imageUrl,
     developer,
+    tags,
 }) => (
     <Card
         cover={
@@ -49,6 +51,7 @@ const GameCard = ({
                     comments={comments}
                     timeCreated={timeCreated}
                     developer={developer}
+                    tags={tags}
                 />
             }
         />

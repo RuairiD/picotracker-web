@@ -16,6 +16,7 @@ const GAMES_QUERY = `query Games($sortMethod: String) {
         comments
         timeCreated
         imageUrl
+        tags
         developer {
             bbsId
             username
@@ -24,13 +25,13 @@ const GAMES_QUERY = `query Games($sortMethod: String) {
 }`;
 
 const PageHeader = ({ infoModalIsVisible, setInfoModalIsVisible }) => (
-    <div style={{ textAlign: 'center', margin: '1em' }}>
+    <div style={{ textAlign: 'center' }}>
         <div style={{ fontFamily: 'CaveStoryRegular' }}>
-            <Typography.Title style={{ fontSize: '64px', margin: 0, letterSpacing: '4px' }}>
+            <Typography.Title style={{ fontSize: '64px', margin: 0, letterSpacing: '2px', whiteSpace: 'nowrap' }}>
                 picotracker
             </Typography.Title>
             <Typography.Title level={3} style={{ margin: 0 }}>
-                the hottest pico-8 games
+                the hottest pico-8 carts
             </Typography.Title>
         </div>
         <Button type="link" onClick={() => setInfoModalIsVisible(true)}>
@@ -64,7 +65,7 @@ const SortMethodMenu = ({ onClick, currentMenuKey }) => (
         onClick={onClick}
         selectedKeys={[currentMenuKey]}
     >
-        {Object.keys(SORT_METHODS).map(function(key) {
+        {Object.keys(SORT_METHODS).map(key => {
             return <Menu.Item key={key}>
                 {SORT_METHODS[key].title}
             </Menu.Item>

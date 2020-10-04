@@ -5,7 +5,11 @@ import GameCard from '../../components/GameCard/GameCard';
 
 const GameList = ({ games, loading }) => {
     if ((!games || games.length === 0) && !loading.spinning) {
-        return <Typography.Title level={5} style={{ textAlign: 'center' }}>Nothing here!</Typography.Title>;
+        return (
+            <div style={{ textAlign: 'center' }}>
+                <Typography.Text type="secondary">No carts here :(</Typography.Text>
+            </div>
+        );
     }
     return (
         <List
