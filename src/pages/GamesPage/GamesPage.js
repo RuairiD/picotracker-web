@@ -154,6 +154,12 @@ const GamesPage = () => {
                                     </Typography.Text>
                                     {TRANSPARENT_TEXT}
                                 </Typography.Paragraph>
+                                <Typography.Paragraph>
+                                    <Typography.Text strong>source</Typography.Text><br />
+                                    <Typography.Text>
+                                        <a target="_blank" rel="noopener noreferrer" href="https://github.com/ruairid/picotracker-api">api</a> &#47;&#47; <a target="_blank" rel="noopener noreferrer" href="https://github.com/ruairid/picotracker-web">web</a>
+                                    </Typography.Text>
+                                </Typography.Paragraph>
                             </Layout.Footer>
                         </Layout>
                     </Layout.Content>
