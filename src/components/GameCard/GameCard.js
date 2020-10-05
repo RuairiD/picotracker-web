@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import dateFormat from 'dateformat';
 import { Card, Typography } from 'antd';
 import { StarOutlined, CommentOutlined } from '@ant-design/icons';
@@ -26,6 +26,39 @@ const GameDescription = ({
     </div>
 );
 
+const Thumbnail = ({
+    bbsId,
+    imageUrl,
+    name,
+}) => {
+    const imgRef = useRef(null);
+
+    const [height, setHeight] = useState(null);
+
+    useEffect(() => {
+        setHeight(imgRef.current.clientWidth);
+    }, []);
+
+    let opacity = 0;
+    if (!!height) {
+        opacity = 1;
+    }
+
+    return (
+        <div style={{
+            transition: 'opacity 1s',
+            opacity: opacity,
+            width: "100%",
+            display: 'block',
+            height: height,
+        }}>
+            <a target="_blank" rel="noopener noreferrer" href={"https://www.lexaloffle.com/bbs/?pid=" + bbsId}>
+                <img ref={imgRef} alt={name} style={{ width: "100%" }} src={"https://www.lexaloffle.com" + imageUrl} />
+            </a>
+        </div>
+    )
+}
+
 const GameCard = ({
     bbsId,
     name,
@@ -36,13 +69,7 @@ const GameCard = ({
     developer,
     tags,
 }) => (
-    <Card
-        cover={
-            <a target="_blank" rel="noopener noreferrer" href={"https://www.lexaloffle.com/bbs/?pid=" + bbsId}>
-                <img style={{ width: "100%" }} alt={name} src={"https://www.lexaloffle.com" + imageUrl} />
-            </a>
-        }
-    >
+    <Card cover={<Thumbnail bbsId={bbsId} imageUrl={imageUrl} name={name} />}>
         <Card.Meta
             title={name}
             description={
