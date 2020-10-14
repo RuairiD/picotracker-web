@@ -54,7 +54,7 @@ const Thumbnail = ({
             height: height,
         }}>
             <A target="_blank" rel="noopener noreferrer" href={"https://www.lexaloffle.com/bbs/?pid=" + bbsId}>
-                <Img ref={imgRef} alt={name} style={{ width: "100%" }} src={"https://www.lexaloffle.com" + imageUrl} />
+                <Img tagRef={imgRef} alt={name} style={{ width: "100%" }} src={"https://www.lexaloffle.com" + imageUrl} />
             </A>
         </Div>
     )
