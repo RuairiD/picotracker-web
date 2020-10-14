@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import dateFormat from 'dateformat';
 import { Card, Typography } from 'antd';
 import { StarOutlined, CommentOutlined } from '@ant-design/icons';
+import { A, Div, Img } from 'lemon-reset';
 
 const GameDescription = ({
     stars,
@@ -10,20 +11,20 @@ const GameDescription = ({
     developer,
     tags,
 }) => (
-    <div>
-        <div>
+    <Div>
+        <Div>
             <StarOutlined /> {stars} <CommentOutlined /> {comments}
-        </div>
-        <div>
+        </Div>
+        <Div>
             {dateFormat(
                 new Date(Date.parse(timeCreated)),
                 'mmm dS yyyy',
             )} {tags && tags.length > 0 && <Typography.Text type="secondary" style={{ paddingLeft: '0.5em' }}>#{tags[0]}</Typography.Text>}
-        </div>
-        <div>
-            <a target="_blank" rel="noopener noreferrer" href={"https://www.lexaloffle.com/bbs/?uid=" + developer.bbsId}>By {developer.username}</a>
-        </div>
-    </div>
+        </Div>
+        <Div>
+            <A target="_blank" rel="noopener noreferrer" href={"https://www.lexaloffle.com/bbs/?uid=" + developer.bbsId}>By {developer.username}</A>
+        </Div>
+    </Div>
 );
 
 const Thumbnail = ({
@@ -45,17 +46,17 @@ const Thumbnail = ({
     }
 
     return (
-        <div style={{
+        <Div style={{
             transition: 'opacity 1s',
             opacity: opacity,
             width: "100%",
             display: 'block',
             height: height,
         }}>
-            <a target="_blank" rel="noopener noreferrer" href={"https://www.lexaloffle.com/bbs/?pid=" + bbsId}>
-                <img ref={imgRef} alt={name} style={{ width: "100%" }} src={"https://www.lexaloffle.com" + imageUrl} />
-            </a>
-        </div>
+            <A target="_blank" rel="noopener noreferrer" href={"https://www.lexaloffle.com/bbs/?pid=" + bbsId}>
+                <Img ref={imgRef} alt={name} style={{ width: "100%" }} src={"https://www.lexaloffle.com" + imageUrl} />
+            </A>
+        </Div>
     )
 }
 

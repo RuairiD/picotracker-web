@@ -1,14 +1,15 @@
 import React from 'react';
 import { List, Typography } from 'antd';
+import { Div } from 'lemon-reset';
 
 import GameCard from '../../components/GameCard/GameCard';
 
 const GameList = ({ games, loading }) => {
     if ((!games || games.length === 0) && !loading.spinning) {
         return (
-            <div style={{ textAlign: 'center' }}>
+            <Div style={{ textAlign: 'center' }}>
                 <Typography.Text type="secondary">No carts here :(</Typography.Text>
-            </div>
+            </Div>
         );
     }
     return (

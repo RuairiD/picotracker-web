@@ -3,6 +3,7 @@ import HttpsRedirect from 'react-https-redirect';
 import { useQuery } from 'react-query';
 import { Button, Divider, Typography, Layout, Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
+import { A, Div } from 'lemon-reset';
 
 import apiRoot from '../../apiRoot';
 import GameList from '../../components/GameList/GameList';
@@ -25,20 +26,20 @@ const GAMES_QUERY = `query Games($sortMethod: String) {
 }`;
 
 const PageHeader = ({ infoModalIsVisible, setInfoModalIsVisible }) => (
-    <div style={{ textAlign: 'center' }}>
-        <div style={{ fontFamily: 'CaveStoryRegular' }}>
+    <Div style={{ textAlign: 'center' }}>
+        <Div style={{ fontFamily: 'CaveStoryRegular' }}>
             <Typography.Title style={{ fontSize: '64px', margin: 0, letterSpacing: '2px', whiteSpace: 'nowrap' }}>
                 picotracker
             </Typography.Title>
             <Typography.Title level={3} style={{ margin: 0 }}>
                 the hottest pico-8 carts
             </Typography.Title>
-        </div>
+        </Div>
         <Button type="link" onClick={() => setInfoModalIsVisible(true)}>
             What is this?
         </Button>
         <InfoModal isVisible={infoModalIsVisible} onCancel={() => setInfoModalIsVisible(false)} />
-    </div>
+    </Div>
 );
 
 const SORT_METHODS = {
@@ -74,7 +75,7 @@ const SortMethodMenu = ({ onClick, currentMenuKey }) => (
 );
 
 const SortMethodDropdown = ({ currentMenuKey, setCurrentMenuKey }) => (
-    <div style={{ paddingTop: '1em', paddingBottom: '2em', textAlign: 'center' }}>
+    <Div style={{ paddingTop: '1em', paddingBottom: '2em', textAlign: 'center' }}>
         <Dropdown
             overlay={
                 <SortMethodMenu
@@ -93,7 +94,7 @@ const SortMethodDropdown = ({ currentMenuKey, setCurrentMenuKey }) => (
                 </Typography.Title>
             </Button>
         </Dropdown>
-    </div>
+    </Div>
 );
 
 // TODO: Nicked this from howsmytrack to fill out the page while content is loading. Should probably
@@ -130,7 +131,7 @@ const GamesPage = () => {
     return (
         <HttpsRedirect>
             <Layout className="page-container">
-                <div className="page-container-inner">
+                <Div className="page-container-inner">
                     <Layout.Content className="page-content">
                         <Layout className="content">
                             <PageHeader infoModalIsVisible={infoModalIsVisible} setInfoModalIsVisible={setInfoModalIsVisible} />
@@ -150,20 +151,20 @@ const GamesPage = () => {
                                 <Divider />
                                 <Typography.Paragraph>
                                     <Typography.Text strong>
-                                        <a target="_blank" rel="noopener noreferrer" href="http://ruairidorrity.com">ruairi dorrity</a> &#47;&#47; <a target="_blank" rel="noopener noreferrer" href="https://www.lexaloffle.com/bbs/?uid=46702">ruairi dx</a>
+                                        <A target="_blank" rel="noopener noreferrer" href="http://ruairidorrity.com">ruairi dorrity</A> &#47;&#47; <A target="_blank" rel="noopener noreferrer" href="https://www.lexaloffle.com/bbs/?uid=46702">ruairi dx</A>
                                     </Typography.Text>
                                     {TRANSPARENT_TEXT}
                                 </Typography.Paragraph>
                                 <Typography.Paragraph>
                                     <Typography.Text strong>source</Typography.Text><br />
                                     <Typography.Text>
-                                        <a target="_blank" rel="noopener noreferrer" href="https://github.com/ruairid/picotracker-api">api</a> &#47;&#47; <a target="_blank" rel="noopener noreferrer" href="https://github.com/ruairid/picotracker-web">web</a>
+                                        <A target="_blank" rel="noopener noreferrer" href="https://github.com/ruairid/picotracker-api">api</A> &#47;&#47; <A target="_blank" rel="noopener noreferrer" href="https://github.com/ruairid/picotracker-web">web</A>
                                     </Typography.Text>
                                 </Typography.Paragraph>
                             </Layout.Footer>
                         </Layout>
                     </Layout.Content>
-                </div>
+                </Div>
             </Layout>
         </HttpsRedirect>
     )

@@ -1,4 +1,5 @@
 import React from 'react';
+import { A, Em } from 'lemon-reset';
 
 import { Modal, Typography } from 'antd';
 
@@ -15,7 +16,7 @@ const InfoModal = ({
         className="responsive-modal"
     >
         <Typography.Paragraph>
-            <em>picotracker</em> provides an alternative sorting system to the <a target="_blank" rel="noopener noreferrer" href="https://www.lexaloffle.com/bbs/?cat=7#sub=2">Lexaloffle BBS</a>. Games are ranked based on their BBS engagement and their release dates; newer games are prioritised to ensure you don't miss any new releases.
+            <Em>picotracker</Em> provides an alternative sorting system to the <A target="_blank" rel="noopener noreferrer" href="https://www.lexaloffle.com/bbs/?cat=7#sub=2">Lexaloffle BBS</A>. Games are ranked based on their BBS engagement and their release dates; newer games are prioritised to ensure you don't miss any new releases.
         </Typography.Paragraph>
     </Modal>
 );
